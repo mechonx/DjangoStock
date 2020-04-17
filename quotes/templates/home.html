@@ -15,7 +15,8 @@
 
 <br><br><br>
  <div class="container">
-    <!-- Verificar el Acceso para desplegar -->
+ {{ api.data }}
+    {% comment %} <!-- Verificar el Acceso para desplegar -->
     <table class="table table-hover table-dark">
 
 
@@ -25,12 +26,12 @@
             </tr>
         {% for key, values in api.items %}    
             <tr>    
-                <td>{{ api.items }}</td>
+                <td>{{ api.data }}</td>
 
             </tr>
         {% endfor %}      
 
-    </table>
+    </table> {% endcomment %}
 </div>
 
 

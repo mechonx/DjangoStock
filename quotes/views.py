@@ -3,7 +3,7 @@ from django.contrib import messages
 from .models import Stock
 from .forms import StockForm
 
-
+  
 
 
 def home(request):
@@ -13,7 +13,8 @@ def home(request):
     
     if request.method == 'POST':
         ticker = request.POST['ticker']
-        api_request = requests.get("https://cloud.iexapis.com/stable/stock/" + ticker + "/quote?token=pk_fc70752e289f4678a3853a8a9ad0769f")
+        # https://cloud.iexapis.com/stable/stock/" + ticker + "/quote?token=pk_fc70752e289f4678a3853a8a9ad0769f
+        api_request = requests.get("https://api.worldtradingdata.com/api/v1/stock?symbol=" + ticker + ",TWTR&api_token=iSyKW4kT4N99ZqdRhzN0v0psVf7QvGpzj2bH9cmwWZN0Hpeo6CaNc6ZIk13P")
         try:
             api = json.loads(api_request.content)
         except Exception as e:
@@ -40,7 +41,8 @@ def add_stock(request):
         ticker = Stock.objects.all()
         output = []
         for ticker_item in ticker:
-            api_request = requests.get("https://cloud.iexapis.com/stable/stock/" + str(ticker_item) + "/quote?token=pk_fc70752e289f4678a3853a8a9ad0769f")
+            #https://cloud.iexapis.com/stable/stock/" + str(ticker_item) + "/quote?token=pk_fc70752e289f4678a3853a8a9ad0769f
+            api_request = requests.get("https://api.worldtradingdata.com/api/v1/stock?symbol=" + str(ticker_item) + ",TWTR&api_token=iSyKW4kT4N99ZqdRhzN0v0psVf7QvGpzj2bH9cmwWZN0Hpeo6CaNc6ZIk13P")
             try:
                 api = json.loads(api_request.content)
                 output.append(api)
