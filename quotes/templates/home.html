@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<br><br><br>
+
+{% if api == "Error..." %}
+    <h2>{{ "No existe ese ticker" }}</h2>
+{% endif %}    
+<!-- {% if api.week52High > api.week52Low %}
+   {{ api.week52High }} {{ "es mayor que" }} {{ api.week52Low }}
+{% else %}
+    {{ "OBVIO" }}    
+{% endif %}    -->
+
+<br><br><br>
+ <div class="container">
+    <!-- Verificar el Acceso para desplegar -->
+    <table class="table table-hover table-dark">
+
+
+            <tr>
+                <th>{{ "Simbolo" }}</th>
+                <th>{{ "Empresa" }}</th>
+            </tr>
+        {% for key, values in api.items %}    
+            <tr>    
+                <td>{{ api.items }}</td>
+
+            </tr>
+        {% endfor %}      
+
+    </table>
+</div>
+
+
+{% endblock %}
