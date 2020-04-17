@@ -9,21 +9,21 @@ from .forms import StockForm
 def home(request):
     import requests
     import json
-
+ 
     
     if request.method == 'POST':
         ticker = request.POST['ticker']
         # https://cloud.iexapis.com/stable/stock/" + ticker + "/quote?token=pk_fc70752e289f4678a3853a8a9ad0769f
-        api_request = requests.get("https://api.worldtradingdata.com/api/v1/stock?symbol=" + ticker + ",TWTR&api_token=iSyKW4kT4N99ZqdRhzN0v0psVf7QvGpzj2bH9cmwWZN0Hpeo6CaNc6ZIk13P")
+        api_request = requests.get("https://api.worldtradingdata.com/api/v1/stock?symbol=" + ticker + "&api_token=iSyKW4kT4N99ZqdRhzN0v0psVf7QvGpzj2bH9cmwWZN0Hpeo6CaNc6ZIk13P")
         try:
             api = json.loads(api_request.content)
         except Exception as e:
-            api = "Error..."
+            api = "Error..."    
         return render(request, 'home.html', {'title':'Tarpons.Trade - Stocks Screener', 'api':api}) 
 
     else:
          return render(request, 'home.html', {'title':'Tarpons.Trade - Stocks Screener', 'ticker':"Enter Ticker Symbol"})
-
+    
    
 def add_stock(request):
     import requests
@@ -42,7 +42,7 @@ def add_stock(request):
         output = []
         for ticker_item in ticker:
             #https://cloud.iexapis.com/stable/stock/" + str(ticker_item) + "/quote?token=pk_fc70752e289f4678a3853a8a9ad0769f
-            api_request = requests.get("https://api.worldtradingdata.com/api/v1/stock?symbol=" + str(ticker_item) + ",TWTR&api_token=iSyKW4kT4N99ZqdRhzN0v0psVf7QvGpzj2bH9cmwWZN0Hpeo6CaNc6ZIk13P")
+            api_request = requests.get("https://api.worldtradingdata.com/api/v1/stock?symbol=" + str(ticker_item) + "&api_token=iSyKW4kT4N99ZqdRhzN0v0psVf7QvGpzj2bH9cmwWZN0Hpeo6CaNc6ZIk13P")
             try:
                 api = json.loads(api_request.content)
                 output.append(api)

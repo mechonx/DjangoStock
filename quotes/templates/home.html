@@ -15,7 +15,10 @@
 
 <br><br><br>
  <div class="container">
- {{ api.data }}
+ {% for item in api.data %}
+ {{ item.name }}
+  {{ item.symbol }}
+ {% endfor %}
     {% comment %} <!-- Verificar el Acceso para desplegar -->
     <table class="table table-hover table-dark">
 

@@ -17,11 +17,13 @@
             </thead>
             <tbody>
   
-            {% for list_item in output %}  
-            <tr>
-                <td>{{ list_item.companyName }}</td>
-                <td>{{ list_item.symbol }}</td>  
-            </tr>
+            {% for list_item in output %}
+                {% for item in list_item.data %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.symbol }}</td>  
+                    </tr>
+                {% endfor %}    
             {% endfor %}  
             </tbody>
 
